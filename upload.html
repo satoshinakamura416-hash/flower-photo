@@ -10,7 +10,6 @@
     --pink-50: #fdf2f8;
     --pink-100: #fce7f3;
     --pink-200: #fbcfe8;
-    --pink-300: #f9a8d4;
     --pink-400: #f472b6;
     --pink-500: #ec4899;
     --pink-600: #db2777;
@@ -28,10 +27,9 @@
     --gray-700: #374151;
     --gray-800: #1f2937;
     --red-500: #ef4444;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
-    --radius: 16px;
+    --radius: 14px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,34 +38,9 @@
     font-family: 'Noto Sans JP', 'Zen Maru Gothic', sans-serif;
     background: linear-gradient(160deg, var(--pink-50) 0%, #fff 40%, var(--green-50) 100%);
     min-height: 100vh;
+    min-height: 100dvh;
     color: var(--gray-800);
     padding: 0;
-  }
-
-  /* 花びらの装飾背景 */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, var(--pink-200) 0%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0.4;
-    z-index: 0;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -30px;
-    left: -30px;
-    width: 160px;
-    height: 160px;
-    background: radial-gradient(circle, var(--green-100) 0%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0.5;
-    z-index: 0;
   }
 
   .container {
@@ -75,78 +48,68 @@
     z-index: 1;
     max-width: 480px;
     margin: 0 auto;
-    padding: 24px 20px 40px;
+    padding: 16px 16px 24px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* ヘッダー */
+  /* ヘッダー - コンパクト */
   .header {
     text-align: center;
-    margin-bottom: 28px;
-  }
-  .header .icon {
-    font-size: 40px;
-    margin-bottom: 8px;
-    display: block;
-    animation: bloom 1s ease-out;
-  }
-  @keyframes bloom {
-    0% { transform: scale(0.3) rotate(-20deg); opacity: 0; }
-    60% { transform: scale(1.1) rotate(3deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0deg); }
+    margin-bottom: 12px;
   }
   .header h1 {
     font-family: 'Zen Maru Gothic', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gray-800);
-    letter-spacing: 0.02em;
-  }
-  .header p {
-    font-size: 13px;
-    color: var(--gray-500);
-    margin-top: 4px;
-  }
-
-  /* 注文情報カード */
-  .order-info {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow-md);
-    margin-bottom: 24px;
-    border: 1px solid var(--pink-100);
-  }
-  .order-info .label {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--gray-400);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 4px;
-  }
-  .order-info .value {
     font-size: 18px;
     font-weight: 700;
     color: var(--gray-800);
-    margin-bottom: 14px;
-    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
-  .order-info .value:last-child {
-    margin-bottom: 0;
-  }
-  .order-info .divider {
-    height: 1px;
-    background: var(--gray-100);
-    margin: 12px 0;
-  }
-  .order-info .filename {
-    font-size: 13px;
+  .header h1 .icon { font-size: 24px; }
+  .header p {
+    font-size: 12px;
     color: var(--gray-500);
-    background: var(--gray-50);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-family: monospace;
+    margin-top: 2px;
+  }
+
+  /* 注文情報 - 1行コンパクト表示 */
+  .order-info {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 14px;
+    border: 1px solid var(--pink-100);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .order-info .info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .order-info .label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray-400);
+    white-space: nowrap;
+  }
+  .order-info .value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-800);
     word-break: break-all;
+  }
+  .order-info .separator {
+    color: var(--gray-200);
+    font-size: 14px;
   }
 
   /* エラー表示 */
@@ -162,110 +125,110 @@
   .error-card h2 { font-size: 18px; color: var(--red-500); margin-bottom: 8px; }
   .error-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
 
-  /* アップロードエリア */
-  .upload-area {
-    background: #fff;
-    border: 2px dashed var(--pink-200);
-    border-radius: var(--radius);
-    padding: 36px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  .upload-area:hover, .upload-area.dragover {
-    border-color: var(--pink-400);
-    background: var(--pink-50);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-  .upload-area .upload-icon {
-    font-size: 48px;
-    display: block;
-    margin-bottom: 12px;
-  }
-  .upload-area .upload-text {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--gray-700);
-    margin-bottom: 6px;
-  }
-  .upload-area .upload-hint {
-    font-size: 12px;
-    color: var(--gray-400);
+  /* メインUI */
+  #mainUI {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
-  /* カメラボタン */
-  .camera-btn {
+  /* 大きなボタン2つ */
+  .big-btn {
+    flex: 1;
+    min-height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
-    color: #fff;
+    gap: 8px;
     border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: var(--radius);
     font-family: 'Noto Sans JP', sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 16px rgba(236, 72, 153, 0.3);
-    margin-bottom: 24px;
+    padding: 16px;
   }
-  .camera-btn:hover {
-    transform: translateY(-1px);
+  .big-btn .btn-icon { font-size: 36px; }
+  .big-btn .btn-text {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .big-btn .btn-hint {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+
+  .btn-camera {
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(236, 72, 153, 0.3);
+  }
+  .btn-camera:hover {
+    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
   }
-  .camera-btn:active {
-    transform: translateY(0);
+  .btn-camera:active { transform: translateY(0); }
+
+  .btn-gallery {
+    background: #fff;
+    color: var(--gray-700);
+    border: 2px solid var(--pink-200);
+    box-shadow: var(--shadow-md);
   }
-  .camera-btn .btn-icon { font-size: 22px; }
+  .btn-gallery:hover {
+    border-color: var(--pink-400);
+    background: var(--pink-50);
+    transform: translateY(-2px);
+  }
+  .btn-gallery:active { transform: translateY(0); }
 
   /* プレビュー */
   .preview-section {
     display: none;
-    margin-bottom: 24px;
+    flex: 1;
+    flex-direction: column;
   }
-  .preview-section.show { display: block; }
+  .preview-section.show {
+    display: flex;
+  }
   .preview-card {
     background: #fff;
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--green-100);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
   .preview-card img {
     width: 100%;
-    max-height: 360px;
+    max-height: 240px;
     object-fit: contain;
     background: var(--gray-50);
     display: block;
+    flex: 1;
   }
   .preview-card .preview-footer {
-    padding: 12px 16px;
+    padding: 8px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-top: 1px solid var(--gray-100);
   }
   .preview-card .preview-footer .check {
     color: var(--green-600);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
   }
   .preview-card .preview-footer .retake {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--gray-400);
     background: none;
     border: 1px solid var(--gray-200);
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 8px;
     cursor: pointer;
     font-family: 'Noto Sans JP', sans-serif;
@@ -280,18 +243,19 @@
   .submit-btn {
     display: none;
     width: 100%;
-    padding: 18px;
+    padding: 16px;
     background: linear-gradient(135deg, var(--green-500), var(--green-700));
     color: #fff;
     border: none;
     border-radius: 12px;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     font-family: 'Zen Maru Gothic', sans-serif;
     cursor: pointer;
     letter-spacing: 0.05em;
     transition: all 0.2s ease;
     box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+    margin-top: 10px;
   }
   .submit-btn.show { display: block; }
   .submit-btn:hover {
@@ -320,6 +284,11 @@
     display: block;
     margin-bottom: 16px;
     animation: bloom 0.6s ease-out;
+  }
+  @keyframes bloom {
+    0% { transform: scale(0.3) rotate(-20deg); opacity: 0; }
+    60% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); }
   }
   .success-screen h2 {
     font-family: 'Zen Maru Gothic', sans-serif;
@@ -361,7 +330,6 @@
     font-weight: 500;
   }
 
-  /* hidden inputs */
   .hidden { display: none; }
 </style>
 </head>
@@ -374,21 +342,21 @@
 
 <div class="container">
   <div class="header">
-    <span class="icon">💐</span>
-    <h1>商品写真アップロード</h1>
+    <h1><span class="icon">💐</span> 商品写真アップロード</h1>
     <p>お届けした商品のお写真をお送りください</p>
   </div>
 
-  <!-- 注文情報 -->
+  <!-- 注文情報 - コンパクト1行 -->
   <div class="order-info" id="orderInfo">
-    <div class="label">伝票番号</div>
-    <div class="value" id="orderNumber">-</div>
-    <div class="divider"></div>
-    <div class="label">お届け店舗</div>
-    <div class="value" id="shopName">-</div>
-    <div class="divider"></div>
-    <div class="label">ファイル名</div>
-    <div class="filename" id="fileName">-</div>
+    <div class="info-item">
+      <span class="label">伝票</span>
+      <span class="value" id="orderNumber">-</span>
+    </div>
+    <span class="separator">|</span>
+    <div class="info-item">
+      <span class="label">店舗</span>
+      <span class="value" id="shopName">-</span>
+    </div>
   </div>
 
   <!-- エラー（パラメータなし） -->
@@ -400,17 +368,18 @@
 
   <!-- メインUI -->
   <div id="mainUI">
-    <!-- アップロードエリア（タップで選択） -->
-    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-      <span class="upload-icon">📸</span>
-      <div class="upload-text">タップして写真を選択</div>
-      <div class="upload-hint">カメラで撮影 または ライブラリから選択</div>
-    </div>
-
-    <!-- カメラ直接起動ボタン -->
-    <button class="camera-btn" onclick="document.getElementById('cameraInput').click()">
+    <!-- カメラボタン（大きく目立つ） -->
+    <button class="big-btn btn-camera" onclick="document.getElementById('cameraInput').click()">
       <span class="btn-icon">📷</span>
-      カメラで撮影する
+      <span class="btn-text">カメラで撮影する</span>
+      <span class="btn-hint">タップでカメラが起動します</span>
+    </button>
+
+    <!-- ライブラリから選択 -->
+    <button class="big-btn btn-gallery" onclick="document.getElementById('fileInput').click()">
+      <span class="btn-icon">🖼️</span>
+      <span class="btn-text">写真を選んで送る</span>
+      <span class="btn-hint">撮影済みの写真を選択</span>
     </button>
 
     <!-- プレビュー -->
@@ -418,7 +387,7 @@
       <div class="preview-card">
         <img id="previewImg" src="" alt="プレビュー">
         <div class="preview-footer">
-          <span class="check">✅ 写真を選択済み</span>
+          <span class="check">✅ 写真OK</span>
           <button class="retake" onclick="resetPhoto()">撮り直す</button>
         </div>
       </div>
@@ -446,8 +415,6 @@
   // ===========================================
   //  設定 - ★ここを変更してください★
   // ===========================================
-
-  // Google Apps ScriptのデプロイURL（後述の手順で取得）
   const UPLOAD_URL = 'https://script.google.com/macros/s/AKfycbyceLhBDBOTMTgoUrCrQyHSYKIFZ4-LyPmh5lfA7kPtzB2TRmNCKyPwe0s_tc-v9AjE/exec';
 
   // ===========================================
@@ -456,13 +423,11 @@
   const params = new URLSearchParams(window.location.search);
   const rawName = params.get('name') || '';
 
-  // name=12345_山田花店.jpg のようなフォーマットを想定
   let orderNum = '';
   let shopNameStr = '';
   let fullFileName = rawName;
 
   if (rawName) {
-    // .jpgを除いて分割
     const baseName = rawName.replace(/\.\w+$/, '');
     const parts = baseName.split('_');
     if (parts.length >= 2) {
@@ -471,12 +436,9 @@
     } else {
       orderNum = baseName;
     }
-
     document.getElementById('orderNumber').textContent = orderNum;
     document.getElementById('shopName').textContent = shopNameStr || '-';
-    document.getElementById('fileName').textContent = fullFileName;
   } else {
-    // パラメータがない場合はエラー表示
     document.getElementById('orderInfo').style.display = 'none';
     document.getElementById('mainUI').style.display = 'none';
     document.getElementById('errorCard').style.display = 'block';
@@ -490,19 +452,14 @@
   function handleFile(input) {
     const file = input.files[0];
     if (!file) return;
-
     selectedFile = file;
 
-    // プレビュー表示
     const reader = new FileReader();
     reader.onload = function(e) {
       document.getElementById('previewImg').src = e.target.result;
       document.getElementById('previewSection').classList.add('show');
       document.getElementById('submitBtn').classList.add('show');
-
-      // アップロードエリアを隠す
-      document.getElementById('uploadArea').style.display = 'none';
-      document.querySelector('.camera-btn').style.display = 'none';
+      document.querySelectorAll('.big-btn').forEach(b => b.style.display = 'none');
     };
     reader.readAsDataURL(file);
   }
@@ -511,8 +468,7 @@
     selectedFile = null;
     document.getElementById('previewSection').classList.remove('show');
     document.getElementById('submitBtn').classList.remove('show');
-    document.getElementById('uploadArea').style.display = '';
-    document.querySelector('.camera-btn').style.display = '';
+    document.querySelectorAll('.big-btn').forEach(b => b.style.display = '');
     document.getElementById('fileInput').value = '';
     document.getElementById('cameraInput').value = '';
   }
@@ -528,10 +484,8 @@
     document.getElementById('loading').classList.add('show');
 
     try {
-      // ファイルをBase64に変換
       const base64 = await fileToBase64(selectedFile);
 
-      // Google Apps Scriptに送信
       const response = await fetch(UPLOAD_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -543,13 +497,9 @@
         })
       });
 
-      // 完了画面を表示
       showSuccess();
-
     } catch (error) {
       console.error('Upload error:', error);
-      // no-corsモードではレスポンスが読めないため、
-      // 送信自体は成功している可能性が高い
       showSuccess();
     }
   }
@@ -557,11 +507,7 @@
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => {
-        // data:image/jpeg;base64,XXXX の "XXXX" 部分を取得
-        const base64 = reader.result.split(',')[1];
-        resolve(base64);
-      };
+      reader.onload = () => resolve(reader.result.split(',')[1]);
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
@@ -572,26 +518,6 @@
     document.getElementById('mainUI').style.display = 'none';
     document.getElementById('orderInfo').style.display = 'none';
     document.getElementById('successScreen').classList.add('show');
-  }
-
-  // ドラッグ&ドロップ対応
-  const uploadArea = document.getElementById('uploadArea');
-  if (uploadArea) {
-    uploadArea.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      uploadArea.classList.add('dragover');
-    });
-    uploadArea.addEventListener('dragleave', () => {
-      uploadArea.classList.remove('dragover');
-    });
-    uploadArea.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadArea.classList.remove('dragover');
-      if (e.dataTransfer.files.length > 0) {
-        document.getElementById('fileInput').files = e.dataTransfer.files;
-        handleFile(document.getElementById('fileInput'));
-      }
-    });
   }
 </script>
 
